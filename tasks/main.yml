@@ -1,0 +1,16 @@
+---
+- name: install dogecoind
+  apt:
+    name: dogecoin
+    state: latest
+- name: setup unit service
+  template:
+    src: templates/service.jinja2
+    dest: "/etc/systemd/system/{{ dogecoind_name }}.service"
+  notify:
+    - restart application service
+- name: start unit service
+  systemd:
+    name: "{{ dogecoind_name }}"
+    state: started
+    enabled: yes

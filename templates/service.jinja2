@@ -1,0 +1,12 @@
+[Unit]
+Description={{ dogecoind_name }} service
+
+[Service]
+Type=simple
+ExecStart=dogecoind -datadir "{{ dogecoind_datadir }}" -dbcache {{ dogecoind_cache }} -maxconnections {{ dogecoind_maxpeer }} -printtoconsole -disablewallet -txindex
+  {%- if dogecoind_testnet %} -testnet {% endif %}
+  {%- if dogecoind_port is defined %} --port {{ dogecoind_port }}{% endif %}
+  {%- if dogecoind_rpc is defined and dogecoind_rpc == true %} -rpcuser {{ dogecoind_rpc_username }} -rpcpassword {{ dogecoind_rpc_password }} -rpckeepalive {{ dogecoind_rpckeepalive }} -rpcthreads {{ dogecoind_rpcthreads }} -rpcbind {{ dogecoind_rpcaddr }} -rpcport {{ dogecoind_rpcport }} {% if dogecoind_rpccorsdomain is defined %} -rpcallowip "{{ dogecoind_rpcallowip }}"{% endif %}{% endif %}
+
+[Install]
+WantedBy=multi-user.target

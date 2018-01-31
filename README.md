@@ -1,0 +1,35 @@
+dogecoind
+=========
+
+Installation of dogecoind, only supports `debian` for now
+
+Role Variables
+--------------
+
+```yaml
+---
+dogecoind_name: dogecoind
+
+dogecoind_datadir: /root/.dogecoin
+dogecoind_cache: 1024 # in MB, 1gb
+dogecoind_maxconnections: 125
+
+dogecoind_testnet: false
+dogecoind_port: 22556
+
+dogecoind_rpc: false
+dogecoind_rpcbind: 0.0.0.0
+dogecoind_rpcallowip: 0.0.0.0/0
+dogecoind_rpckeepalive: 1
+dogecoind_rpcthreads: 4
+dogecoind_rpcport: 8332
+dogecoind_rpc_username: username
+dogecoind_rpc_password: password
+```
+
+Example Playbook
+----------------
+
+    - hosts: servers
+      roles:
+         - { role: dogecoind }

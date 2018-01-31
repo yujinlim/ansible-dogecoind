@@ -1,0 +1,6 @@
+galaxy_info:
+  author: yu jin
+  description: ansible dogecoind installation
+  min_ansible_version: 1.2
+  galaxy_tags: []
+dependencies: []
